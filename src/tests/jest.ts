@@ -4,6 +4,7 @@ import type { RequestHandler } from "msw";
 import { setupServer } from "msw/node";
 
 export function setupMockServer(...handlers: RequestHandler[]) {
+  // msw/node から提供される setupServer を使用して、Jest テスト向けのセットアップ関数を用意
   const server = setupServer(...handlers);
   beforeAll(() => server.listen());
   afterEach(() => server.resetHandlers());

@@ -11,6 +11,7 @@ import * as stories from "./index.stories";
 const { Default } = composeStories(stories);
 const user = userEvent.setup();
 
+// setup関数はインタラクション関数を含んでいます。
 async function setup() {
   const { container } = render(<Default />);
   const { selectImage } = selectImageFile();

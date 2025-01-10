@@ -9,6 +9,7 @@ const user = userEvent.setup();
 
 // テストを書きやすいように、セットアップ関数を用意
 function setup() {
+  // アサーション用に用意したモック関数(スパイ)
   const onClickSave = jest.fn();
   const onValid = jest.fn();
   const onInvalid = jest.fn();
@@ -47,7 +48,10 @@ function setup() {
 setupMockServer(handleGetMyProfile());
 
 test("不適正内容で「下書き保存」を試みると、バリデーションエラーが表示される", async () => {
+  // https://testing-library.com/docs/user-event/intro
+  // We recommend invoking userEvent.setup() before the component is rendered.
   const { saveAsDraft } = setup();
+  // セットアップ関数 setup() を実行したら、いきなり保存ボタンを押す
   await saveAsDraft();
   await waitFor(() =>
     expect(
@@ -58,7 +62,9 @@ test("不適正内容で「下書き保存」を試みると、バリデーシ�
 
 test("不適正内容で「下書き保存」を試みると、onInvalid イベントハンドラーが実行される", async () => {
   const { saveAsDraft, onClickSave, onValid, onInvalid } = setup();
+  // セットアップ関数 setup() を実行したら、いきなり保存ボタンを押す
   await saveAsDraft();
+  // セットアップ関数で用意したスパイを調べる
   expect(onClickSave).toHaveBeenCalled();
   expect(onValid).not.toHaveBeenCalled();
   expect(onInvalid).toHaveBeenCalled();

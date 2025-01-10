@@ -29,6 +29,8 @@ export const TextboxWithInfo = forwardRef<HTMLInputElement, Props>(
           </label>
           {info}
         </header>
+        {/* どのような状態にあるかを ARIA 属性によって補足しています。 */}
+        {/* aria-invalid と aria-errormessage は、入力内容にエラーがあることを知らせる属性です。 */}
         <Textbox
           {...props}
           ref={ref}
