@@ -15,6 +15,7 @@ test("TextboxWithInfo", async () => {
   );
 });
 
+// accessibility を検証しています。
 test("TextboxWithInfo", async () => {
   const args = {
     title: "記事タイトル",

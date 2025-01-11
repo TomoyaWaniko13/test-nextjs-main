@@ -15,6 +15,7 @@ const user = userEvent.setup();
 async function setup() {
   const { container } = render(<Default />);
   const { selectImage } = selectImageFile();
+
   async function typeTitle(title: string) {
     const textbox = screen.getByRole("textbox", { name: "記事タイトル" });
     await user.type(textbox, title);
@@ -108,8 +109,7 @@ describe("Toast", () => {
   });
 
   test("公開に失敗した場合「公開に失敗しました」が表示される", async () => {
-    const { typeTitle, saveAsPublished, clickButton, selectImage } =
-      await setup();
+    const { typeTitle, saveAsPublished, clickButton, selectImage } = await setup();
     await typeTitle("500");
     await selectImage();
     await saveAsPublished();
